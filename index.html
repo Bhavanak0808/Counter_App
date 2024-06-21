@@ -12,23 +12,33 @@
         align-items: center;
         justify-content: center;
         height: 100vh;
-        margin: 0;
-        background-color: rgb(174, 35, 35);
+        background-color: rgb(141, 189, 59);
+      }
+      .modal {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
       }
       .button {
-        font-size: 24px;
         padding: 10px 20px;
-        background-color: rgb(121, 27, 21);
+        background-color: rgb(93, 92, 92);
         color: white;
-        border: none;
-        cursor: pointer;
         border-radius: 5px;
+        margin: 10px;
       }
     </style>
   </head>
   <body>
     <div id="root"></div>
     <script type="text/babel">
+      const Modal = ({ children }) => {
+        return (
+          <div className="modal">
+            {children}
+          </div>
+        );
+      };
+
       const CounterButton = () => {
         const [count, setCount] = React.useState(27);
 
@@ -36,10 +46,18 @@
           setCount(count + 1);
         };
 
+        const decrement = () => {
+          setCount(count - 1);
+        };
+
         return (
-          <button className="button" onClick={increment}>
-            {count}
-          </button>
+          <Modal>
+             <div style={{ fontSize: '24px', marginTop: '10px' }}> Count: {count}</div>
+             <button className="button" onClick={increment}>
+              Increment
+            </button>
+  
+          </Modal>
         );
       };
 
